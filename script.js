@@ -72,7 +72,7 @@ function initBoot() {
     $("#music-play").innerHTML = "&#9654;";
     $("#music-prev").innerHTML = "&#9198;";
     $("#music-next").innerHTML = "&#9197;";
-    $("#track-title").textContent = "Oorum Blood";
+    $("#track-title").textContent = "Tanvi OS Theme";
     $("#track-artist").textContent = "Dude - Sai Abhyankkar";
     if (!$("#music-embed")) {
         $(".music-widget")?.insertAdjacentHTML("beforeend", `<div id="music-embed" aria-hidden="true"></div>`);
@@ -989,14 +989,9 @@ function initKeyboard() {
 function initMusic() {
     const tracks = [
         {
-            title: "Oorum Blood",
-            artist: "Dude - Sai Abhyankkar",
-            youtubeId: "fA_X_1W9U3Q"
-        },
-        {
             title: "Tanvi OS Theme",
-            artist: "Creative Command Center",
-            src: "https://assets.mixkit.co/music/preview/mixkit-futuristic-technology-1232.mp3"
+            artist: "Dude - Sai Abhyankkar",
+            src: "song.mp3"
         }
     ];
     let index = 0;
@@ -1011,10 +1006,6 @@ function initMusic() {
     const audio = new Audio();
     audio.preload = "auto";
     audio.crossOrigin = "anonymous";
-    
-    let ytPlayer = null;
-    let ytReady = false;
-    let ytProgressInterval = null;
 
     const sync = () => {
         const track = tracks[index];
@@ -1028,29 +1019,18 @@ function initMusic() {
         playing = next;
         const track = tracks[index];
         if (playing) {
-            if (track.youtubeId) {
-                audio.pause();
-                if (embedContainer) {
-                    embedContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${track.youtubeId}?autoplay=1&mute=0" allow="autoplay; encrypted-media; picture-in-picture"></iframe>`;
-                }
-            } else {
-                if (embedContainer) embedContainer.innerHTML = "";
-                if (!audio.src || audio.src !== track.src) {
-                    audio.src = track.src;
-                }
-                try {
-                    await audio.play();
-                } catch (error) {
-                    playing = false;
-                    console.warn("Autoplay blocked or audio error:", error);
-                }
+            if (embedContainer) embedContainer.innerHTML = "";
+            if (!audio.src || !audio.src.endsWith(track.src)) {
+                audio.src = track.src;
+            }
+            try {
+                await audio.play();
+            } catch (error) {
+                playing = false;
+                console.warn("Autoplay blocked or audio error:", error);
             }
         } else {
-            if (track.youtubeId) {
-                if (embedContainer) embedContainer.innerHTML = "";
-            } else {
-                audio.pause();
-            }
+            audio.pause();
         }
         sync();
     };
