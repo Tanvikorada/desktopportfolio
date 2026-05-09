@@ -1016,39 +1016,6 @@ function initMusic() {
     let ytReady = false;
     let ytProgressInterval = null;
 
-    if (embedContainer) {
-        embedContainer.innerHTML = '<div id="yt-player-container"></div>';
-        window.onYouTubeIframeAPIReady = () => {
-            ytPlayer = new YT.Player('yt-player-container', {
-                height: '0',
-                width: '0',
-                videoId: tracks[0].youtubeId,
-                playerVars: { 'autoplay': 0, 'controls': 0, 'disablekb': 1, 'fs': 0, 'modestbranding': 1, 'playsinline': 1 },
-                events: {
-                    'onReady': () => { ytReady = true; },
-                    'onStateChange': (event) => {
-                        if (event.data === YT.PlayerState.ENDED) {
-                            index = (index + 1) % tracks.length;
-                            setPlaying(true);
-                        }
-                    }
-                }
-            });
-        };
-    }
-
-    const updateYTProgress = () => {
-        if (!ytPlayer || !ytReady) return;
-        const duration = ytPlayer.getDuration();
-        const currentTime = ytPlayer.getCurrentTime();
-        if (duration > 0) {
-            progress = (currentTime / duration) * 100;
-            if (bar) bar.style.width = `${progress}%`;
-            const seconds = Math.floor(currentTime);
-            if (time) time.textContent = `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
-        }
-    };
-
     const sync = () => {
         const track = tracks[index];
         if (title) title.textContent = track.title;
@@ -1063,18 +1030,11 @@ function initMusic() {
         if (playing) {
             if (track.youtubeId) {
                 audio.pause();
-                if (ytReady && ytPlayer) {
-                    if (ytPlayer.getVideoData().video_id !== track.youtubeId) {
-                        ytPlayer.loadVideoById(track.youtubeId);
-                    } else {
-                        ytPlayer.playVideo();
-                    }
-                    clearInterval(ytProgressInterval);
-                    ytProgressInterval = setInterval(updateYTProgress, 500);
+                if (embedContainer) {
+                    embedContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${track.youtubeId}?autoplay=1&mute=0" allow="autoplay; encrypted-media; picture-in-picture"></iframe>`;
                 }
             } else {
-                if (ytReady && ytPlayer) ytPlayer.pauseVideo();
-                clearInterval(ytProgressInterval);
+                if (embedContainer) embedContainer.innerHTML = "";
                 if (!audio.src || audio.src !== track.src) {
                     audio.src = track.src;
                 }
@@ -1086,9 +1046,8 @@ function initMusic() {
                 }
             }
         } else {
-            if (track.youtubeId && ytReady && ytPlayer) {
-                ytPlayer.pauseVideo();
-                clearInterval(ytProgressInterval);
+            if (track.youtubeId) {
+                if (embedContainer) embedContainer.innerHTML = "";
             } else {
                 audio.pause();
             }
