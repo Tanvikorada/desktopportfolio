@@ -991,7 +991,7 @@ function initMusic() {
         {
             title: "Anthuleni Prema",
             artist: "Tanvi OS",
-            src: "anthuleni_prema.m4a"
+            src: "song.mp3"
         }
     ];
     let index = 0;
