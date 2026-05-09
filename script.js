@@ -991,7 +991,7 @@ function initMusic() {
         {
             title: "Oorum Blood",
             artist: "Dude - Sai Abhyankkar",
-            youtubeId: "fA_X_1W9U3Q"
+            src: "oorum_blood.mp3"
         },
         {
             title: "Tanvi OS Theme",
