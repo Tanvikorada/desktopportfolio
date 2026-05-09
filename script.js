@@ -72,8 +72,8 @@ function initBoot() {
     $("#music-play").innerHTML = "&#9654;";
     $("#music-prev").innerHTML = "&#9198;";
     $("#music-next").innerHTML = "&#9197;";
-    $("#track-title").textContent = "Tanvi OS Theme";
-    $("#track-artist").textContent = "Dude - Sai Abhyankkar";
+    $("#track-title").textContent = "Anthuleni Prema";
+    $("#track-artist").textContent = "Tanvi OS";
     if (!$("#music-embed")) {
         $(".music-widget")?.insertAdjacentHTML("beforeend", `<div id="music-embed" aria-hidden="true"></div>`);
     }
@@ -989,9 +989,9 @@ function initKeyboard() {
 function initMusic() {
     const tracks = [
         {
-            title: "Tanvi OS Theme",
-            artist: "Dude - Sai Abhyankkar",
-            src: "song.mp3"
+            title: "Anthuleni Prema",
+            artist: "Tanvi OS",
+            src: "anthuleni_prema.mp3"
         }
     ];
     let index = 0;
