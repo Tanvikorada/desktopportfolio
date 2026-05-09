@@ -1,0 +1,5 @@
+.kilocode
+.vscode
+.idea
+node_modules
+*.log
