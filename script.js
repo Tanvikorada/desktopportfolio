@@ -1027,7 +1027,7 @@ function initMusic() {
             if (track.youtubeId) {
                 audio.pause();
                 if (embed) {
-                    embed.innerHTML = `<iframe src="https://www.youtube.com/embed/${track.youtubeId}?autoplay=1&loop=1&playlist=${track.youtubeId}" allow="autoplay"></iframe>`;
+                    embed.innerHTML = `<iframe src="https://www.youtube.com/embed/${track.youtubeId}?autoplay=1&mute=0&loop=1&playlist=${track.youtubeId}&enablejsapi=1" allow="autoplay; encrypted-media; picture-in-picture" style="border:0;width:100%;height:100%;"></iframe>`;
                     embed.classList.add("playing");
                 }
             } else {

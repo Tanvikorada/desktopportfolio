@@ -122,8 +122,8 @@ a {
     background: url("https://images.unsplash.com/photo-1517021897933-0e0319cfbc28?auto=format&fit=crop&w=2138&q=80") center / cover no-repeat;
 }
 
-#desktop[data-theme="forest"] {
-    background: url("https://images.unsplash.com/photo-1448375231573-fb9a1bb64c3f?auto=format&fit=crop&w=2070&q=80") center / cover no-repeat;
+#desktop[data-theme="windows"] {
+    background: url("https://images.wallpapersden.com/image/download/windows-11-bloom_bmVrZ26UmZqaraWkpJRobWllrWdma2U.jpg") center / cover no-repeat;
 }
 
 #desktop[data-theme="mountain"] {
@@ -752,6 +752,7 @@ kbd {
     border-radius: 10px;
     background: rgba(24, 26, 34, 0.78);
     box-shadow: var(--shadow);
+    -webkit-backdrop-filter: blur(34px) saturate(1.35);
     backdrop-filter: blur(34px) saturate(1.35);
     -webkit-backdrop-filter: blur(34px) saturate(1.35);
     pointer-events: auto;
