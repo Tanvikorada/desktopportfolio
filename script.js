@@ -72,8 +72,8 @@ function initBoot() {
     $("#music-play").innerHTML = "&#9654;";
     $("#music-prev").innerHTML = "&#9198;";
     $("#music-next").innerHTML = "&#9197;";
-    $("#track-title").textContent = "Anthuleni Prema";
-    $("#track-artist").textContent = "Tanvi OS";
+    $("#track-title").textContent = "Oorum Blood";
+    $("#track-artist").textContent = "Dude - Sai Abhyankkar";
     if (!$("#music-embed")) {
         $(".music-widget")?.insertAdjacentHTML("beforeend", `<div id="music-embed" aria-hidden="true"></div>`);
     }
@@ -989,9 +989,9 @@ function initKeyboard() {
 function initMusic() {
     const tracks = [
         {
-            title: "Anthuleni Prema",
-            artist: "Tanvi OS",
-            src: "song.mp3"
+            title: "Oorum Blood",
+            artist: "Dude - Sai Abhyankkar",
+            src: "song.m4a"
         }
     ];
     let index = 0;
